@@ -1,6 +1,8 @@
-this is a Article page!!!!!
 
 {% for article in articles %}
-    <p>{{ article.name }}</p>
+    <img src="{{ article.thumbnail.url }}" alt="">
+    <p>{{ article.title }}</p>
     <p>{{ article.description }}</p>
+    <a href="{{ article.slug }}">{{ article.slug }}</a>
+    <hr>
 {% endfor %}

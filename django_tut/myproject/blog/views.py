@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from .models import Article
 
 
 def home(request):
@@ -21,18 +22,11 @@ def api(request):
     }
     return JsonResponse(data)
 
+
 def articles(request):
     context = {
-        'articles':[
-            {
-                'name':'reza article',
-                'description':'reza say hello'
-            },
-            {
-                'name':'ali',
-                'description':'ali say hello'
-            }
-        ]
+        'articles': Article.objects.filter(status='p')
+
     }
     return render(request, 'blog/article.html', context)
 
