@@ -3,6 +3,6 @@
     <img src="{{ article.thumbnail.url }}" alt="">
     <p>{{ article.title }}</p>
     <p>{{ article.description }}</p>
-    <a href="{{ article.slug }}">{{ article.slug }}</a>
+    <a href="{% url 'blog:detail' article.slug %}">{{ article.slug }}</a>
     <hr>
 {% endfor %}
