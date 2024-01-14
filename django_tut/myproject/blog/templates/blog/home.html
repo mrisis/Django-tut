@@ -32,7 +32,13 @@
                             Posted by
                             <a href="#!">reza</a>
                             {{ article.jpublish }}
+
                         </p>
+                        <div>
+                            {% for cat in article.category.all %}
+                                <a href="#">{{ cat.title }}</a>
+                            {% endfor %}
+                        </div>
                     </div>
                     <!-- Divider-->
                     <hr class="my-4" />
