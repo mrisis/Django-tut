@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.http import HttpResponse, JsonResponse
 from .models import Article, Category
+from django.views.generic import ListView
 
 
 def api(request):
@@ -21,16 +22,23 @@ def api(request):
     return JsonResponse(data)
 
 
-def home(request, page=1):
-    articles = Article.objects.published()
-    paginator = Paginator(articles, 2)
-    articles = paginator.get_page(page)
-    context = {
-        'articles': articles,
-        'category': Category.objects.filter(status=True)
+# def home(request, page=1):
+#     articles = Article.objects.published()
+#     paginator = Paginator(articles, 2)
+#     articles = paginator.get_page(page)
+#     context = {
+#         'articles': articles,
+#         'category': Category.objects.filter(status=True)
+#
+#     }
+#     return render(request, 'blog/home.html', context)
 
-    }
-    return render(request, 'blog/home.html', context)
+class ArticleListView(ListView):
+
+    queryset = Article.objects.published()
+    paginate_by = 2
+    context_object_name = "articles"
+    template_name = "blog/home.html"
 
 
 def detail(request, slug):

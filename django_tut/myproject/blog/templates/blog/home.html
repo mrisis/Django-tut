@@ -46,15 +46,15 @@
 
 
                     <div class="d-flex justify-content-end mb-4">
-                        {% if articles.has_previous %}
-                            <a class="btn btn-primary text-uppercase pager-button " href="{% url 'blog:home' articles.previous_page_number %}">پست های قدیمی &lAarr;</a>
+                        {% if page_obj.has_previous %}
+                            <a class="btn btn-primary text-uppercase pager-button " href="{% url 'blog:home' page_obj.previous_page_number %}">پست های قدیمی &lAarr;</a>
                         {% endif %}
-                        {% if articles.has_next %}
-                            <a class="btn btn-primary text-uppercase pager-button " href="{% url 'blog:home' articles.next_page_number %}">پست های جدید &rAarr;</a>
+                        {% if page_obj.has_next %}
+                            <a class="btn btn-primary text-uppercase pager-button " href="{% url 'blog:home' page_obj.next_page_number %}">پست های جدید &rAarr;</a>
                         {% endif %}
                     </div>
 
                 </div>
-            </div>
+            </div>page_obj
         </div>
 {% endblock %}
