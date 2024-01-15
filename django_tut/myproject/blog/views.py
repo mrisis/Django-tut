@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator
 from django.http import HttpResponse, JsonResponse
 from .models import Article, Category
 
@@ -20,9 +21,12 @@ def api(request):
     return JsonResponse(data)
 
 
-def home(request):
+def home(request, page=1):
+    articles = Article.objects.published()
+    paginator = Paginator(articles, 2)
+    articles = paginator.get_page(page)
     context = {
-        'articles': Article.objects.filter(status='p'),
+        'articles': articles,
         'category': Category.objects.filter(status=True)
 
     }

@@ -22,6 +22,7 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
 
                 <div class="col-md-10 col-lg-8 col-xl-7">
+                    <h3 class="alert alert-primary text-center">دسته بندی:{{ category.title }}</h3>
                     {% for article in category.articles.all %}
                     <div class="post-preview">
                         <a href="{% url 'blog:detail' article.slug %}">
@@ -45,7 +46,12 @@
                 {% endfor %}
 
 
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase pager-button" href="#!">Older Posts &lAarr;</a></div>
+                    <div class="d-flex justify-content-end mb-4">
+                        
+                        <a class="btn btn-primary text-uppercase pager-button " href="#!">پست های قدیمی &lAarr;</a>
+                        <a class="btn btn-primary text-uppercase pager-button " href="#!">پست های جدید &rAarr;</a>
+
+                    </div>
                 </div>
             </div>
         </div>
