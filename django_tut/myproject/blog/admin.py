@@ -3,11 +3,10 @@ from .models import Article,Category
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'status', 'position')
+    list_display = ('title', 'slug', 'status', 'parent', 'position')
     list_filter = ('status',)
     search_fields = ('title', 'slug')
     prepopulated_fields = {'slug': ('title',)}
-
 
 
 admin.site.register(Category, CategoryAdmin)
