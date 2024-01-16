@@ -1,6 +1,9 @@
 from django.contrib import admin
 from .models import Article,Category
 
+# admin panel site header
+
+admin.site.site_header = "ادمین پنل رضا"
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'status', 'parent', 'position')
