@@ -5,6 +5,7 @@ from .models import Article,Category
 
 admin.site.site_header = "ادمین پنل رضا"
 
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'status', 'parent', 'position')
     list_filter = ('status',)
@@ -40,8 +41,8 @@ make_published.short_discriotion = 'پیش نویس مقالات انتخاب ش
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title','thumbnail_tag', 'slug', 'jpublish', 'status', 'category_to_str')
-    list_filter = ('publish', 'status')
+    list_display = ('title', 'author', 'thumbnail_tag', 'slug', 'jpublish', 'status', 'category_to_str')
+    list_filter = ('publish', 'status', 'author')
     search_fields = ('title', 'description')
     prepopulated_fields = {'slug': ('title',)}
     ordering = ['-publish', 'status']

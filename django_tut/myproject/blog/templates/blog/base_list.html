@@ -1,0 +1,62 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title%}
+    home
+{% endblock %}
+
+{% block body %}
+    <!-- Page Header-->
+        <header class="masthead" style="background-image: url({% static 'blog/assets/img/home-bg.jpg' %})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>reza amin</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+            <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                {% block header %}{% endblock %}
+                    {% for article in articles %}
+                    <div class="post-preview">
+                        <a href="{% url 'blog:detail' article.slug %}">
+                            <h2 class="post-title">{{ article.title }}</h2>
+                            <h3 class="post-subtitle">{{ article.description }}</h3>
+                        </a>
+                        <p class="post-meta">
+                            Posted by
+                            <a href="{% url 'blog:author' article.author %}">{{ article.author.get_full_name }}</a>
+                            {{ article.jpublish }}
+
+                        </p>
+                        <div>
+                            {% for cat in article.category_published.published %}
+                                <a href="{% url 'blog:category' cat.slug %}">{{ cat.title }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                {% endfor %}
+
+
+                    <div class="d-flex justify-content-end mb-4">
+
+                        {% if page_obj.has_previous %}
+                            <a class="btn btn-primary text-uppercase pager-button " href="{% block previous_page_url %}{% endblock %}">پست های قدیمی &lAarr;</a>
+                        {% endif %}
+                        {% if page_obj.has_next %}
+                            <a class="btn btn-primary text-uppercase pager-button " href="{% block next_page_url %}{% endblock %}">پست های جدید &rAarr;</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

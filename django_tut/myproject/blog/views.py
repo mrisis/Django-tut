@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse, JsonResponse
 from .models import Article, Category
 from django.views.generic import ListView, DetailView
+from django.contrib.auth.models import User
 
 
 def api(request):
@@ -81,3 +82,18 @@ class CategoryList(ListView):
         return context
 
 
+class AuthorList(ListView):
+    paginate_by = 2
+    template_name = 'blog/author_list.html'
+    context_object_name = 'articles'
+
+    def get_queryset(self):
+        global author
+        username = self.kwargs.get('username')
+        author = get_object_or_404(User, username=username)
+        return author.articles.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['author'] = author
+        return context

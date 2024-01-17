@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import api, ArticleDetail, CategoryList, ArticleListView
+from .views import api, ArticleDetail, CategoryList, ArticleListView, AuthorList
 
 app_name = 'blog'
 urlpatterns = [
@@ -9,5 +9,7 @@ urlpatterns = [
     path('article/<slug:slug>', ArticleDetail.as_view(), name='detail'),
     path('category/<slug:slug>', CategoryList.as_view(), name='category'),
     path('category/<slug:slug>/<int:page>/', CategoryList.as_view(), name='category'),
+    path('author/<str:username>/<int:page>/', AuthorList.as_view(), name='author'),
+    path('author/<str:username>', AuthorList.as_view(), name='author'),
 
 ]
