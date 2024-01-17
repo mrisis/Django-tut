@@ -3,3 +3,9 @@ body {
     direction: rtl;
     text-align: right;
 }
+
+.errors {
+    color: red;
+    background-color: cornflowerblue;
+    padding: 20px 30px;
+}
